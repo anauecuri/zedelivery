@@ -1,0 +1,25 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    - 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}'
+    - 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
+
+cache:
+  paths:
+    - .terraform
+
+stages:
+  - deploy_infra
+
+deploy:
+  stage: deploy_infra
+  script:
+    - terraform --version
+    - terraform init
+    - terraform validate iac/
+    - terraform plan iac/
+####    - terraform apply -auto-approve
+  only:
+    - master
