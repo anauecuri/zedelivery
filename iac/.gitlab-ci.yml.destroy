@@ -1,0 +1,21 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    - 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}'
+    - 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
+
+cache:
+  paths:
+    - .terraform
+
+stages:
+  - destroy_infra
+
+deploy:
+  stage: destroy_infra
+  script:
+    - terraform destroy -auto-approve
+  only:
+    - master

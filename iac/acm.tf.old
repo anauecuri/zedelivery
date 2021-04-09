@@ -1,0 +1,29 @@
+resource "aws_acm_certificate" "cert" {
+  domain_name               = "${var.domain}"
+  subject_alternative_names = ["*.${var.domain}"]
+  validation_method         = "DNS"
+}
+
+data "aws_acm_certificate" "cert" {
+   provider = "aws.us"
+   domain   = "${var.domain}"
+   statuses = ["ISSUED"]
+   most_recent = true
+}
+
+# resource "aws_route53_record" "cert_validation" {
+#   name    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_name}"
+#   type    = "${aws_acm_certificate.cert.domain_validation_options.0.resource_record_type}"
+#   zone_id = "${data.aws_route53_zone.primary.id}"
+#   records = ["${aws_acm_certificate.cert.domain_validation_options.0.resource_record_value}"]
+#   ttl     = 60
+# }
+
+output "acm_output" {
+  value = "${aws_acm_certificate.cert.arn}"
+}
+
+# output "acm_output_data" {
+#   value = "${data.aws_acm_certificate.cert.arn}"
+# }
+

@@ -1,0 +1,31 @@
+[
+  {
+    "portMappings": [
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 8080
+      }
+    ],
+  "name": "${microservice}",
+  "image": "${containerImage}",
+  "cpu": ${container_cpu},
+  "memory": ${container_memory},
+  "memoryReservation": ${container_memoryReservation},
+  "essential": ${container_boolean_essential},
+  "environment": [
+    {
+      "name": "SPRING_PROFILES_ACTIVE",
+      "value": "${Env}"
+    }
+  ],
+  "logConfiguration": {
+    "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]
