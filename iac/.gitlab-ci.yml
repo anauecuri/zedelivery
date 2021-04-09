@@ -18,8 +18,8 @@ deploy:
   script:
     - terraform --version
     - terraform init
-    - terraform validate
-    - terraform plan
+    - terraform validate iac/
+    - terraform plan iac/
 ####    - terraform apply -auto-approve
   only:
     - master
