@@ -17,7 +17,7 @@ deploy:
   stage: deploy_infra
   script:
     - terraform --version
-    - terraform init
+    - terraform init iac/
     - terraform validate iac/
     - terraform plan iac/
 ####    - terraform apply -auto-approve
