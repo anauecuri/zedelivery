@@ -1,11 +1,11 @@
 #ECS
 Env = "prd"
   
-#domain = "teste-itau"
+domain = "ze.delivery"
   
 instance_type = "t2.micro"
   
-KeyName =   "dev"  
+KeyName =   "prd"  
   
 main_vpc =   "vpc-626b821f"  
   
@@ -28,15 +28,13 @@ deregistration_delay =   "0"
   
 deployment_minimum_healthy_percent =   "0"  
   
-deployment_maximum_percent =   "100"  
-  
-lambda_minutos =   "900"  
+deployment_maximum_percent =   "100"    
   
 min_capacity =   "1"  
   
 max_capacity =   "1"  
 
-log_group = "/ecs/Itau-Svc-Logs"
+log_group = "/ecs/zedelivery-Svc-Logs"
   
 #micro service
 min_capacity_service =   "2"  
@@ -57,9 +55,7 @@ container_cpu_service =   "256"
   
 container_memory_service =   "1024"  
   
-container_memoryReservation_service =   "1024"  
-  
-java_xmx_xms_service =   "768"  
+container_memoryReservation_service =   "1024"   
   
 #region
 region = "us-east-1"  

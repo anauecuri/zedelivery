@@ -1,10 +1,10 @@
 #CPU Policy UP
 resource "aws_autoscaling_policy" "autopolicy_cpu" {
-  name                   = "itau-autopolicy-up-cpu"
+  name                   = "zedelivery-autopolicy-up-cpu"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
-  autoscaling_group_name = "${aws_autoscaling_group.itau-ecs-cluster.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.zedelivery-ecs-cluster.name}"
 }
 #Cpu Alarm UP
 resource "aws_cloudwatch_metric_alarm" "cpualarm" {
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_metric_alarm" "cpualarm" {
   threshold           = (var.Env == "prd" ? "70" : "75")
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.itau-ecs-cluster.name}"
+    ClusterName = "${aws_ecs_cluster.zedelivery-ecs-cluster.name}"
   }
 
   alarm_description = "This metric monitor EC2 instance cpu utilization"
@@ -27,11 +27,11 @@ resource "aws_cloudwatch_metric_alarm" "cpualarm" {
 }
 #CPU Policy Down
 resource "aws_autoscaling_policy" "autopolicy-down-cpu" {
-  name                   = "itau-autopolicy-down"
+  name                   = "zedelivery-autopolicy-down"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 600
-  autoscaling_group_name = "${aws_autoscaling_group.itau-ecs-cluster.name}"
+  autoscaling_group_name = "${aws_autoscaling_group.zedelivery-ecs-cluster.name}"
 }
 #CPU Alarm Down
 resource "aws_cloudwatch_metric_alarm" "cpualarm-down" {
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "cpualarm-down" {
   threshold           = "50"
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.itau-ecs-cluster.name}"
+    ClusterName = "${aws_ecs_cluster.zedelivery-ecs-cluster.name}"
   }
 
   alarm_description = "This metric monitor EC2 instance cpu utilization"

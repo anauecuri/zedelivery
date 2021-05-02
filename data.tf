@@ -24,6 +24,6 @@ data "template_file" "ecs-cluster" {
   template = "${file("${path.module}/ecs-cluster.tpl")}"
 
   vars = {
-    ecs_cluster = "${aws_ecs_cluster.itau-ecs-cluster.name}"
+    ecs_cluster = "${aws_ecs_cluster.zedelivery-ecs-cluster.name}"
   }
 }

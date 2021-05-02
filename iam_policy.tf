@@ -1,5 +1,5 @@
-resource "aws_iam_policy" "ecr_Access_itau" {
-  name = "ecr_Access_itau"
+resource "aws_iam_policy" "ecr_Access_zedelivery" {
+  name = "ecr_Access_zedelivery"
   path = "/"
   policy = <<EOF
 {

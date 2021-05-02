@@ -1,6 +1,6 @@
 #ECS
 variable "Env" {}
-#variable "domain" {}
+variable "domain" {}
 variable "instance_type" {}
 variable "KeyName" {}
 variable "main_vpc" {}
@@ -16,7 +16,6 @@ variable "log_group" {}
 variable "deregistration_delay" {}
 variable "deployment_minimum_healthy_percent" {}
 variable "deployment_maximum_percent" {}
-variable "lambda_minutos" {}
 variable "min_capacity" {}
 variable "max_capacity" {}
 #service
@@ -31,11 +30,23 @@ variable "ecr_registry_type" {}
 variable "container_cpu_service" {}
 variable "container_memory_service" {}
 variable "container_memoryReservation_service" {}
-variable "java_xmx_xms_service" {}
+
 #region
 variable "region" {}
 
 #docker image
-variable "itau-image" {
+variable "zedelivery-backend-image" {
+  default = "1.0"
+}
+variable "zedelivery-consumerapp-image" {
+  default = "1.0"
+}
+variable "zedelivery-consumerweb-image" {
+  default = "1.0"
+}
+variable "zedelivery-entregadorapp-image" {
+  default = "1.0"
+}
+variable "zedelivery-partnerwebapp-image" {
   default = "1.0"
 }

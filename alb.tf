@@ -1,5 +1,5 @@
 resource "aws_alb" "alb" {
-  name            = "itau-alb"
+  name            = "zedelivery-alb"
   internal        = true
   subnets         = ["${var.dmz_subnet_1}", "${var.dmz_subnet_2}"]
   security_groups = ["${aws_security_group.lb.id}"]
@@ -7,8 +7,8 @@ resource "aws_alb" "alb" {
   idle_timeout    = 120
   tags = {
     pep         = "00000000"
-    sigla       = "itau"
-    descsigla   = "itau"
+    sigla       = "zedelivery"
+    descsigla   = "zedelivery"
     region      = "${var.region}"
     golive      = "false"
     function    = "backend"

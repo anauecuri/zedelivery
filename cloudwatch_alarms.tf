@@ -1,6 +1,6 @@
 #Memory
 resource "aws_cloudwatch_metric_alarm" "CloudWatchMemoryAlarm" {
-  alarm_name          = "itau-Infra-ECS-Memory-Utilization"
+  alarm_name          = "zedelivery-Infra-ECS-Memory-Utilization"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryUtilization"
@@ -10,12 +10,12 @@ resource "aws_cloudwatch_metric_alarm" "CloudWatchMemoryAlarm" {
   threshold           = "90"
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.itau-ecs-cluster.name}"
+    ClusterName = "${aws_ecs_cluster.zedelivery-ecs-cluster.name}"
   }
 }
 #Cpu
 resource "aws_cloudwatch_metric_alarm" "CloudWatchCpuAlarm" {
-  alarm_name          = "itau-Infra-ECS-CPU-Utilization"
+  alarm_name          = "zedelivery-Infra-ECS-CPU-Utilization"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "CPUUtilization"
@@ -25,6 +25,6 @@ resource "aws_cloudwatch_metric_alarm" "CloudWatchCpuAlarm" {
   threshold           = "90"
 
   dimensions = {
-    ClusterName = "${aws_ecs_cluster.itau-ecs-cluster.name}"
+    ClusterName = "${aws_ecs_cluster.zedelivery-ecs-cluster.name}"
   }
 }

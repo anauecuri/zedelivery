@@ -5,7 +5,7 @@ ECS_ENABLE_TASK_IAM_ROLE=true
 ECS_ENABLE_TASK_IAM_ROLE_NETWORK_HOST=true
 ECS_AVAILABLE_LOGGING_DRIVERS=["json-file","awslogs"]
 ECS_LOGLEVEL=debug
-ECS_CLUSTER=itau-ecs-cluster
+ECS_CLUSTER=zedelivery-ecs-cluster
 EOT
 yum install -y awslogs
 mv /etc/awslogs/awslogs.conf /etc/awslogs/awslogs.conf.bak
@@ -15,21 +15,21 @@ cat <<EOT > /etc/awslogs/awslogs.conf
 state_file = /var/lib/awslogs/agent-state
 [/var/log/dmesg]
 file = /var/log/dmesg
-log_group_name = itau-Infra-ECS-OS-dmesg
+log_group_name = zedelivery-Infra-ECS-OS-dmesg
 log_stream_name = {instance_id}
 [/var/log/messages]
 file = /var/log/messages
-log_group_name = itau-Infra-ECS-OS-messages
+log_group_name = zedelivery-Infra-ECS-OS-messages
 log_stream_name = {instance_id}
 datetime_format = %b %d %H:%M:%S
 [/var/log/ecs/ecs-init.log]
 file = /var/log/ecs/ecs-init.log
-log_group_name = itau-Infra-ECS-OS-ecs-init.log
+log_group_name = zedelivery-Infra-ECS-OS-ecs-init.log
 log_stream_name = {instance_id}
 datetime_format = %Y-%m-%dT%H:%M:%SZ
 [/var/log/ecs/ecs-agent.log]
 file = /var/log/ecs/ecs-agent.log
-log_group_name = itau-Infra-ECS-OS-ecs-agent.log
+log_group_name = zedelivery-Infra-ECS-OS-ecs-agent.log
 log_stream_name = {instance_id}
 datetime_format = %Y-%m-%dT%H:%M:%SZ
 EOT
@@ -37,7 +37,7 @@ EOT
 systemctl start awslogsd
 systemctl enable awslogsd
 /bin/easy_install --script-dir /opt/aws/bin https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
-/opt/aws/bin/cfn-signal -e $? --stack itau-ecs-cluster --resource ECSAutoScalingGroup --region us-east-1
+/opt/aws/bin/cfn-signal -e $? --stack zedelivery-ecs-cluster --resource ECSAutoScalingGroup --region us-east-1
 
 echo -------------DEEPSECURITY instalation code------------
 #touch /tmp/deepsecurity.sh

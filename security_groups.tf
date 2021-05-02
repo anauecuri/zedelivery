@@ -1,6 +1,6 @@
 # ALB
 resource "aws_security_group" "lb" {
-  name        = "itau-sg-lb"
+  name        = "zedelivery-sg-lb"
   description = "controls access to the ALB"
   vpc_id      = "${var.main_vpc}"
 
@@ -28,7 +28,7 @@ resource "aws_security_group" "lb" {
 
 # ECS
 resource "aws_security_group" "ecs_tasks" {
-  name        = "itau-sg-ecs"
+  name        = "zedelivery-sg-ecs"
   description = "allow inbound access from the and local network ALB only"
   vpc_id      = "${var.main_vpc}"
 
@@ -60,33 +60,6 @@ resource "aws_security_group" "ecs_tasks" {
     self      = true
   }
 
-  egress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-# Curator
-resource "aws_security_group" "curator_sg" {
-  name        = "itau-sg-curator-v1"
-  description = "allow inbound access from the and local network"
-  vpc_id      = "${var.main_vpc}"
-
-  ingress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["10.0.0.0/8"]
-  }
-
-  ingress {
-    protocol    = "-1"
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["${var.cidr_vpc}"]
-  }
   egress {
     protocol    = "-1"
     from_port   = 0

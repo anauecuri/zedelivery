@@ -16,8 +16,8 @@ resource "aws_alb_target_group" "default-target-group" {
   }
   tags = {
     pep         = "00000000"
-    sigla       = "itau"
-    descsigla   = "itau"
+    sigla       = "zedelivery"
+    descsigla   = "zedelivery"
     region      = "${var.region}"
     golive      = "false"
     function    = "backend"
